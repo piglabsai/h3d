@@ -1,0 +1,7 @@
+H3D
+Copyright 2026 Piglabs
+
+Licensed under the Apache License, Version 2.0. See LICENSE.
+
+H3D is an independent extension of H3. It uses H3 through h3-py, which is
+distributed separately under the Apache License, Version 2.0.
