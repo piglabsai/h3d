@@ -19,7 +19,7 @@ classifiers = [
 
 [project.urls]
 Repository = "https://github.com/piglabsai/h3d"
-Documentation = "https://github.com/piglabsai/h3d/blob/main/docs/index.md"
+Documentation = "https://piglabsai.github.io/h3d/"
 Issues = "https://github.com/piglabsai/h3d/issues"
 Changelog = "https://github.com/piglabsai/h3d/blob/main/CHANGELOG.md"
 

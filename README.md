@@ -68,12 +68,12 @@ The satellite input must already be in WGS84 ECEF. Positions in an inertial fram
 
 ## Documentation
 
-- [Documentation home](https://github.com/piglabsai/h3d/blob/main/docs/index.md)
-- [Understand the grid](https://github.com/piglabsai/h3d/blob/main/docs/concepts.md)
-- [Usage guide](https://github.com/piglabsai/h3d/blob/main/docs/usage.md)
-- [API quick reference](https://github.com/piglabsai/h3d/blob/main/docs/api_quick.md)
-- [API reference](https://github.com/piglabsai/h3d/blob/main/docs/api_reference.md)
-- [Format specification](https://github.com/piglabsai/h3d/blob/main/docs/format.md)
+- [Documentation home](https://piglabsai.github.io/h3d/)
+- [Understand the grid](https://piglabsai.github.io/h3d/concepts.html)
+- [Usage guide](https://piglabsai.github.io/h3d/usage.html)
+- [API quick reference](https://piglabsai.github.io/h3d/api_quick.html)
+- [API reference](https://piglabsai.github.io/h3d/api_reference.html)
+- [Format specification](https://piglabsai.github.io/h3d/format.html)
 - [Contributor guide](https://github.com/piglabsai/h3d/blob/main/docs/contributing.md)
 
 H3D is licensed under [Apache-2.0](https://github.com/piglabsai/h3d/blob/main/LICENSE).
