@@ -22,7 +22,13 @@ a WGS84 ellipsoidal height interval in a single 128-bit identifier.
 
 ## Install
 
-From the source checkout, use Python 3.10 or later.
+Install from PyPI with Python 3.10 or later.
+
+```console
+python -m pip install h3d
+```
+
+To install from a source checkout, run the following in its root.
 
 ```console
 python -m pip install .
@@ -68,6 +74,8 @@ positions already expressed in Earth-fixed Cartesian metres, see
 - [API quick reference](api_quick.md) for functions grouped by task.
 - [API reference](api_reference.md) for public signatures and behavior.
 - [Format specification](format.md) for encoding and boundary rules.
+- [Contributor guide](https://github.com/piglabsai/h3d/blob/main/docs/contributing.md)
+  for development setup, testing, and documentation builds.
 
 ```{toctree}
 :hidden:
