@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.1
+
+- Link the PyPI project metadata and package README to the hosted Sphinx
+  documentation.
+
 ## 0.1.0
 
 - Initial preview of voxel indexing with independent H3 and vertical resolutions.
