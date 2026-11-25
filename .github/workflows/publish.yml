@@ -1,15 +1,45 @@
-name: Publish release
+name: Publish release to PyPI
 
 on:
   workflow_dispatch:
+    inputs:
+      tag:
+        description: Published GitHub release tag
+        required: true
+        type: string
 
 permissions:
   contents: read
 
 jobs:
   verify:
-    if: github.repository == 'piglabsai/h3d' && startsWith(github.ref, 'refs/tags/v')
-    uses: ./.github/workflows/ci.yml
+    if: github.repository == 'piglabsai/h3d' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Download the published GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ inputs.tag }}
+        run: |
+          [[ "$RELEASE_TAG" == v* ]]
+          [[ "$(gh release view "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" --json isDraft --jq .isDraft)" == false ]]
+          gh release download "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" --dir candidate \
+            --pattern '*.whl' --pattern '*.tar.gz' --pattern SHA256SUMS
+          (cd candidate && tr -d '\r' < SHA256SUMS | sha256sum --check --strict)
+          mkdir dist
+          cp candidate/*.whl candidate/*.tar.gz dist/
+          python -m pip install twine
+          python -m twine check --strict dist/*
+          python -m pip install --no-deps dist/*.whl
+          python -c "from importlib.metadata import version; from os import environ; assert environ['RELEASE_TAG'] == 'v' + version('h3d')"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pypi-distributions
+          path: dist/
+          if-no-files-found: error
 
   pypi:
     needs: verify
@@ -20,26 +50,6 @@ jobs:
     steps:
       - uses: actions/download-artifact@v4
         with:
-          name: distributions-ubuntu-latest-3.12
+          name: pypi-distributions
           path: dist
       - uses: pypa/gh-action-pypi-publish@release/v1
-
-  github:
-    needs: pypi
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    steps:
-      - uses: actions/download-artifact@v4
-        with:
-          name: distributions-ubuntu-latest-3.12
-          path: dist
-      - name: Attach the published distributions
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          cd dist
-          sha256sum *.whl *.tar.gz > SHA256SUMS
-          gh release create "$GITHUB_REF_NAME" *.whl *.tar.gz SHA256SUMS \
-            --repo "$GITHUB_REPOSITORY" --verify-tag --prerelease \
-            --title "H3D $GITHUB_REF_NAME" --generate-notes

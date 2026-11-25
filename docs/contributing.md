@@ -20,12 +20,14 @@ environment.
 
 Keep development history in the private backup. Start the public repository
 from a reviewed snapshot. Run the public repository's Tests workflow and tag
-the verified commit with the version from `pyproject.toml`.
+the verified commit with the version from `pyproject.toml`. Attach the verified
+Linux wheel and source distribution to the GitHub release alongside their
+`SHA256SUMS` file.
 
 For the first PyPI release, configure a pending Trusted Publisher for
 `piglabsai/h3d`, workflow `publish.yml`, and environment `pypi`. Dispatch
-**Publish release** on the version tag. It runs the package and documentation
-checks, publishes the verified Linux build to PyPI, and attaches those same
-distributions to the GitHub release. Verify the published files and a clean
-PyPI installation after the workflow succeeds.
+**Publish release to PyPI** from `main` with the version tag as its input.
+It checks the release artifact hashes and publishes the same distributions
+to PyPI. Verify the published files and a clean PyPI installation after the
+workflow succeeds.
 [PyPI Trusted Publishing](https://docs.pypi.org/trusted-publishers/creating-a-project-through-oidc/)
