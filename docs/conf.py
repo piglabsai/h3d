@@ -24,5 +24,6 @@ napoleon_google_docstring = False
 nitpicky = True
 html_theme = "sphinx_book_theme"
 html_title = "H3D documentation"
+html_baseurl = "https://piglabsai.github.io/h3d/"
 html_theme_options = {"show_navbar_depth": 2}
 html_show_sourcelink = False

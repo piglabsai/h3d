@@ -16,6 +16,13 @@ the public API. Before release, build the wheel from the source distribution
 and run the tests and README examples against the installed wheel in a clean
 environment.
 
+## Publish documentation
+
+Run **Publish documentation** from `main` in the public repository. The
+workflow builds the Sphinx site, tests its examples, and deploys it to GitHub
+Pages. Check the rendered home, usage guide, and API reference after deployment.
+[Published documentation](https://piglabsai.github.io/h3d/)
+
 ## Publish a release
 
 Keep development history in the private backup. Start the public repository
